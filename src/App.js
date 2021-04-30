@@ -1,15 +1,31 @@
-import React from 'react';
+import { IonApp, IonButton, IonContent, IonHeader, IonIcon, IonTitle, IonToast, IonToolbar } from '@ionic/react';
+import { play as playIcon } from 'ionicons/icons';
+import React, { useState } from 'react';
 
 function App() {
+  const [showToast, setShowToast] = useState(false);
+  const handleClick = () => {
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1000);
+  };
   return (
-    <div>
-      <header>
-        <h1>My App</h1>
-      </header>
-      <main>
-        <p>Add some content here…</p>
-      </main>
-    </div>
+    <IonApp>
+      <IonHeader>
+        <IonToolbar>
+
+        <IonTitle >My App</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent className='ion-padding' >
+        <IonButton color="primary" onClick={handleClick}>
+          <IonIcon icon={playIcon} slot="start" />
+          Click Me
+        </IonButton>
+        <IonToast isOpen={showToast} message="hello" />
+      </IonContent>
+    </IonApp>
   );
 }
 
